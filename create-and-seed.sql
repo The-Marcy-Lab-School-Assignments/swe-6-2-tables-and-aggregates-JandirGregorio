@@ -32,15 +32,35 @@
 -- ============================================================
 -- Step 1: Create the database
 -- ============================================================
-
-
+DROP DATABASE IF EXISTS music_library_db;
+CREATE DATABASE music_library_db;
+\c music_library_db
 
 -- ============================================================
 -- Step 2: Create the table
 -- ============================================================
 
-
+CREATE TABLE songs (
+  song_id           SERIAL  PRIMARY KEY,
+  title             TEXT    NOT NULL UNIQUE,
+  artist            TEXT    NOT NULL,
+  genre             TEXT    NOT NULL,
+  year              INT     NOT NULL,
+  duration_seconds  INT     NOT NULL,
+  streams           BIGINT  DEFAULT 0
+);
 
 -- ============================================================
 -- Step 3: Insert seed data (at least 8 rows)
 -- ============================================================
+
+INSERT INTO songs (title, artist, genre, year, duration_seconds, streams)
+VALUES
+  ('Hasta Jesús tuvo un mal día',   'Ca7riel & Paco Amoroso, Sting',  'latin',  2026,   195,  8000000),
+  ('CRY OUT',                       'TRiDENT',                        'rock',   2023,   272,  2100000),
+  ('No Letting Go',                 'Wayne Wonder',                   'pop',    2004,   245,  15200000),
+  ('NUEVAYoL',                      'Bad Bunny',                      'latin',  2025,   183,  1100000000),
+  ('Bohemian Rhapsody',             'Queen',                          'rock',   1975,   354,  3100000000),
+  ('Dumbai',                        'Ca7riel & Paco Amoroso',         'latin',  2024,   148,  70000000),
+  ('Not Like Us',                   'Kendrick Lamar',                 'hip-hop', 2025,  274,  1800000000),
+  ('DtMF',                          'Bad Bunny',                      'latin',  2025,   237,  1700000000);
